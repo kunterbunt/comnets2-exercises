@@ -246,4 +246,5 @@ Z=icdf('Normal',y,mu,sigma);
 
 CI=[sampleMean-Z*deviation/sqrt(m),sampleMean+Z*deviation/sqrt(m)]
 
+csvwrite('thirtyrunsCI.dat',CI)
 
