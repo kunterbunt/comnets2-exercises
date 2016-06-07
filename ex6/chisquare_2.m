@@ -1,7 +1,7 @@
 
 clear
 
-k=32 %Intervals
+k=25 %Intervals
 
 %Import values
 
@@ -37,27 +37,33 @@ if (min(intervals)<5*numSmallerFive/k)
     msgbox('Invalid number of intervals k','Error','error')
 end
 
+
+
 %Do x^2 statistic
-
-
-%expected_frequency=n/k; %Ei=N(F(Yu)?F(Yl))
-%for i=1:length(observed)
- %   substract(i,1)=observed(i,1)-expected_frequency;
-  %  square_substract(i,1)=(substract(i,1))^2;
-   % chi2(i,1)=square_substract(i,1)/expected_frequency;
-%end
-%for i=1:length(observed)
- %   ocurrance(i,1)=observed(i,1)*i;
-%end
-%lambda=sum(ocurrance)/sum(intervals);
 lambda=mean(x);
-
-for i=1:length(intervals)
-    expected_frequency(i,1)=(poisscdf(minValue+i*stepSize,lambda)-poisscdf(minValue+(i-1)*stepSize,lambda))*n;
+%Using cdf------------
+%for i=1:k
+    %expected_frequency(i,1)=(poisscdf((minValue+i*stepSize),lambda)-poisscdf((minValue+(i-1)*stepSize),lambda))*n;
     
+   
+%end
+
+
+%Using pdf---------------
+xi=minValue:1:maxValue; %values from min to max
+pdf = pdf('Poisson',xi,lambda);
+xj=1:1:length(xi); %map min to max to 1 to legnth of xi
+expected_frequency=zeros(k,1);
+for i=1:k
+   for j=(1+(i-1)*length(xi)/k):(1+(i)*length(xi)/k) %Step size changed to length(xi)/k
+       expected_frequency(i,1)=expected_frequency(i,1)+pdf(1,floor(j)); %As frasctional steps are given, floor is used to truncate and dont go inexistent over pdf  values
+       
+   end
 end
 
-for i=1:length(intervals)
+expected_frequency=expected_frequency.*n;
+
+for i=1:k
     substract(i,1)=intervals(i,1)-expected_frequency(i,1);
     square_substract(i,1)=substract(i,1)^2;
     chi2(i,1)=square_substract(i,1)/expected_frequency(i,1);
