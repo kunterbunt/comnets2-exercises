@@ -32,6 +32,12 @@ network Ex7Network
             delay = default(40ms);
             datarate = default(40kbps);
         }
+        channel internetLink extends DatarateChannel
+        {
+            delay = default(0ms);
+            datarate = default(100Mbps);
+        }
+        
     submodules:
         flatNetworkConfigurator: FlatNetworkConfigurator {
             @display("p=77,29");
@@ -46,12 +52,16 @@ network Ex7Network
         user[625]: StandardHost {
             @display("p=126,259");
         }
-        internetCloud: InternetCloud {
+        internetRouter: Router {
             @display("p=229,60");
         }
+        httpServer: StandardHost {
+            @display("p=341,43");
+        }
     connections:
+        httpServer.pppg++ <--> internetLink <--> internetRouter.pppg++;
         for i=0..4 {
-            backendRouter[i].pppg++ <--> backendGateaway <--> internetCloud.pppg++;
+            backendRouter[i].pppg++ <--> backendGateaway <--> internetRouter.pppg++;
         }
         for i=0..4, for j=0..4 {
             backendRouter[i].pppg++ <--> routerBackend <--> endRouter[j+i*5].pppg++;
