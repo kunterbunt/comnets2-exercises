@@ -30,7 +30,8 @@ network Ex7Network
         channel clientRouter extends DatarateChannel
         {
             delay = default(40ms);
-            datarate = default(40kbps);
+            volatile double datarate1 @unit(Mbps);
+            datarate = default(datarate1);
         }
         channel internetLink extends DatarateChannel
         {
