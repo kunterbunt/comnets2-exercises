@@ -9,11 +9,9 @@ import inet.node.inet.Router;
 import inet.node.inet.StandardHost;
 import ned.DatarateChannel;
 
-
-
 network Ex7Network
 {
-    @display("bgb=470,352");
+    @display("bgb=398,307");
     types:
         channel backendGateaway extends DatarateChannel
         {
@@ -28,14 +26,15 @@ network Ex7Network
         channel clientRouter extends DatarateChannel
         {
             delay = default(40ms);
-            datarate = default(40kbps);
+            volatile double datarate1 @unit(Mbps);
+            datarate = default(datarate1);
         }
         channel internetLink extends DatarateChannel
         {
             delay = default(0ms);
             datarate = default(100Mbps);
         }
-
+        
     submodules:
         flatNetworkConfigurator: FlatNetworkConfigurator {
             @display("p=77,29");
