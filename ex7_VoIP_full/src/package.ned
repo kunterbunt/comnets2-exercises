@@ -10,7 +10,7 @@ import ned.DatarateChannel;
 
 network VoIPNetwork
 {
-    @display("bgb=398,307");
+    @display("bgb=661,380");
     types:
         channel backendGateaway extends DatarateChannel
         {
@@ -33,26 +33,26 @@ network VoIPNetwork
             delay = default(0ms);
             datarate = default(100Mbps);
         }
-        
+
     submodules:
         flatNetworkConfigurator: FlatNetworkConfigurator {
-            @display("p=77,29");
+            @display("p=139,92");
         }
         backendRouter[5]: Router {
-            @display("p=120,149");
+            @display("p=238,206");
         }
         endRouter[25]: Router {
-            @display("p=302,159");
+            @display("p=420,216");
         }
 
         user[625]: StandardHost {
-            @display("p=126,259");
+            @display("p=244,316");
         }
         internetRouter: Router {
-            @display("p=229,60");
+            @display("p=347,117");
         }
         httpServer: StandardHost {
-            @display("p=341,43");
+            @display("p=459,100");
         }
     connections:
         httpServer.pppg++ <--> internetLink <--> internetRouter.pppg++;
@@ -64,6 +64,7 @@ network VoIPNetwork
         }
         for i=0..24, for j=0..24 {
             endRouter[i].pppg++ <--> clientRouter <--> user[j+i*25].pppg++;
+            user[j+i*25].pppg++ <--> clientRouter <--> endRouter[i].pppg++;
         }
 
 }

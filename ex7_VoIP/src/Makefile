@@ -1,12 +1,12 @@
 #
-# OMNeT++/OMNEST Makefile for VoIP
+# OMNeT++/OMNEST Makefile for ex7_VoIP
 #
 # This file was generated with the command:
 #  opp_makemake -f --deep -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/transport/tcp_common -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/base -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/applications/common -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/ieee80211/mac -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/applications/udpapp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/transport/udp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/ieee80211/radio/errormodel -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/ieee80211/radio -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/status -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/transport/sctp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/icmpv6 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/radio/propagation -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/transport/contract -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/ipv6tunneling -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/world/radio -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/contract -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/udp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/tcp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/radio -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/world/obstacles -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/common -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/ipv6 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/arp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/routing/aodv -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/contract -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/xmipv6 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/sctp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/ipv6 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/battery/models -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/autorouting/ipv4 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/ipv4 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/mobility/contract -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/applications/pingapp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/common -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/ipv4 -L/home/kunterbunt/dev/omnetpp-4.6/samples/inet/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINET_PROJ=/home/kunterbunt/dev/omnetpp-4.6/samples/inet
 #
 
 # Name of target to be created (-o option)
-TARGET = VoIP$(EXE_SUFFIX)
+TARGET = ex7_VoIP$(EXE_SUFFIX)
 
 # User interface (uncomment one) (-u option)
 USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
@@ -147,7 +147,7 @@ msgheaders: $(MSGFILES:.msg=_m.h)
 clean:
 	$(qecho) Cleaning...
 	$(Q)-rm -rf $O
-	$(Q)-rm -f VoIP VoIP.exe libVoIP.so libVoIP.a libVoIP.dll libVoIP.dylib
+	$(Q)-rm -f ex7_VoIP ex7_VoIP.exe libex7_VoIP.so libex7_VoIP.a libex7_VoIP.dll libex7_VoIP.dylib
 	$(Q)-rm -f ./*_m.cc ./*_m.h
 	$(Q)-rm -f results/*_m.cc results/*_m.h
 

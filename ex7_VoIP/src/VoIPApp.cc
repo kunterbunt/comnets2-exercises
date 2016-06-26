@@ -9,11 +9,11 @@ protected:
 
     void initialize(int stage) override {
         super::initialize(stage);
-        durationSum = 0;
-        avgDuration = 0;
-        numTooLatePackets = 0;
-        acceptableDelay = par("acceptableDelay").doubleValue();;
-        errorRate = 0;
+        this->durationSum = 0;
+        this->avgDuration = 0;
+        this->numTooLatePackets = 0;
+        this->acceptableDelay = par("acceptableDelay").doubleValue();;
+        this->errorRate = 0;
     }
 
     void sendPacket() override {
@@ -46,8 +46,7 @@ protected:
         this->avgDuration = this->durationSum / this->numReceived;
         delete pk;
         if (duration.dbl() > acceptableDelay) {
-            numTooLatePackets++;
-            errorRate = ((double) numTooLatePackets) / ((double) this->numReceived);
+            this->numTooLatePackets++;
             EV << "numTooLatePackets=" << numTooLatePackets << " numRecieved=" << this->numReceived << " errorRate=" << errorRate << endl;
             EV << "Dropping packet that was too late; had a duration of " << duration << ". #dropped=" << numTooLatePackets << endl;
         } else {
@@ -56,10 +55,10 @@ protected:
     }
 
     void finish() override {
+        this->errorRate = ((double) numTooLatePackets) / ((double) this->numReceived);
         recordScalar("#droppedBecauseLate", numTooLatePackets);
         recordScalar("avgDuration", avgDuration);
         recordScalar("error rate", errorRate);
-        ApplicationBase::finish();
         super::finish();
     }
 
