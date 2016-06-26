@@ -1,0 +1,4 @@
+function indexloop(iMax, jMax)
+for i=0:iMax
+    for j=0:jMax
+        fprintf('i=%d j+i*\n',i);        

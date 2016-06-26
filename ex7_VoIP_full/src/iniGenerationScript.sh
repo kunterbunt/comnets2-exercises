@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in {1..25}; do
+for i in {0..24}; do
 	j=$(($i*25))
 	echo **.user[$j].numUdpApps = 1
 	echo **.user[$j].udpApp[0].typename = \"VoIPApp\"  
@@ -9,7 +9,7 @@ for i in {1..25}; do
 	echo **.user[$j].udpApp[0].sendInterval = 20ms # 1000ms / 20ms = 50 packets per second.
 	echo **.user[$j].udpApp[0].acceptableDelay = 200ms 
 	echo -n **.user[$j].udpApp[0].destAddresses = \" 
-	for k in {1..24}; do
+	for k in {0..24}; do
 		l=$(($k*25))
 		echo -n "user[$l] "
 	done
