@@ -4,22 +4,28 @@ import inet.networklayer.autorouting.ipv4.FlatNetworkConfigurator;
 import inet.nodes.ethernet.Eth100M;
 import inet.nodes.inet.Router;
 import inet.nodes.inet.StandardHost;
+import inet.nodes.inet.WirelessHost;
 import inet.nodes.wireless.AccessPoint;
+import inet.world.radio.ChannelControl;
 import ned.DatarateChannel;
 
 @license(LGPL);
 
-network UniversityNetwork {
+network UniversityNetwork
+{
     @display("bgb=662,419");
     types:
-        channel InternetChannel extends DatarateChannel {
+        channel InternetChannel extends DatarateChannel
+        {
             delay = exponential(30ms);
             datarate = 100Mbps;
         }
-        channel DFNChannel extends DatarateChannel {
+        channel DFNChannel extends DatarateChannel
+        {
             delay = 5ms;
         }
-        channel BackupChannel extends DatarateChannel {
+        channel BackupChannel extends DatarateChannel
+        {
             delay = 10ms;
             datarate = 12Mbps;
         }
@@ -48,14 +54,17 @@ network UniversityNetwork {
         Professor: StandardHost {
             @display("p=421,80");
         }
-        Conference: StandardHost {
-            @display("p=158,111");
-        }
-        Students: StandardHost {
-            @display("p=96,286");
-        }
-        FTPUploader: StandardHost {
+        Conference: WirelessHost {
             @display("p=38,111");
+        }
+        FTPUploader: WirelessHost {
+            @display("p=135,129");
+        }
+        Students[2]: WirelessHost {
+            @display("p=38,283");
+        }
+        channelControl: ChannelControl {
+            @display("p=118,44");
         }
     connections:
         remote.ethg++ <--> Eth100M <--> CCTV.ethg++;
