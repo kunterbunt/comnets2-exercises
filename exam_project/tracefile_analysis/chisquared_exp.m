@@ -32,12 +32,13 @@ while i < N_j_length
 end
 % Plot value distribution into bins.
 figure;
-plot(N_j);
+plot(N_j, 'o');
 title('Total occurrences of observed values within intervals');
 xlabel('Intervals');
 ylabel('Total Occurrences');
 set(gca,'FontSize',28)
 % Determine expected values.
+lambda = mean(observed_values)
 expected_frequency = zeros(length(N_j), 1);
 for i=1:length(N_j)    
     expected_frequency(i,1) = (expcdf(observed_min + i * interval_size, lambda) - expcdf(observed_max + (i-1) * interval_size, lambda)) * sum(N_j);    
