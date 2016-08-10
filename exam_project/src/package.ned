@@ -1,6 +1,8 @@
 package exam_project;
 
 import inet.networklayer.autorouting.ipv4.FlatNetworkConfigurator;
+import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
+import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.ethernet.Eth100M;
 import inet.nodes.inet.Router;
 import inet.nodes.inet.StandardHost;
@@ -23,6 +25,7 @@ network UniversityNetwork
         channel DFNChannel extends DatarateChannel
         {
             delay = 5ms;
+            datarate = 100Mbps;
         }
         channel BackupChannel extends DatarateChannel
         {
@@ -35,9 +38,6 @@ network UniversityNetwork
         }
         main: Router {
             @display("p=488,194");
-        }
-        flatNetworkConfigurator: FlatNetworkConfigurator {
-            @display("p=308,31");
         }
         CCTV: StandardHost {
             @display("p=258,319");
@@ -64,7 +64,10 @@ network UniversityNetwork
             @display("p=38,283");
         }
         channelControl: ChannelControl {
-            @display("p=118,44");
+            @display("p=238,44");
+        }
+        iPv4NetworkConfigurator: IPv4NetworkConfigurator {
+            @display("p=338,45");
         }
     connections:
         remote.ethg++ <--> Eth100M <--> CCTV.ethg++;
