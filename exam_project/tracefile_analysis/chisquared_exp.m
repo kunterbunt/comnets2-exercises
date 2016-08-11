@@ -41,7 +41,7 @@ set(gca,'FontSize',28)
 lambda = mean(observed_values)
 expected_frequency = zeros(length(N_j), 1);
 for i=1:length(N_j)    
-    expected_frequency(i,1) = (expcdf(observed_min + i * interval_size, lambda) - expcdf(observed_max + (i-1) * interval_size, lambda)) * sum(N_j);    
+    expected_frequency(i,1) = (expcdf(observed_min + i * interval_size, lambda) - expcdf(observed_min+ (i-1) * interval_size, lambda)) * sum(N_j);    
 end
 % Determine test statistic.
 statistic_values = zeros(length(N_j), 1);
@@ -63,4 +63,16 @@ else
     display('Observed values DO NOT follow an Exponential distribution at 99.95% significance level.');
     followExpDistr = 0;
 end
+
+%Plot expected and observed_values 
+figure;
+plot(N_j(:),'--')
+hold on
+plot(expected_frequency(:,1),'-')
+title('Total occurrences of observed values within intervals');
+xlabel('Intervals');
+ylabel('N? of Occurrences');
+set(gca,'FontSize',28)
+legend('Observed','Expected');
+
 end
