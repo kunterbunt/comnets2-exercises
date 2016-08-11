@@ -7,3 +7,6 @@ ex3/ex3
 */.metadata
 */.tkenvrc
 .metadata/
+exam_project/latex/report.aux
+exam_project/latex/report.log
+exam_project/latex/report.synctex.gz

@@ -2,10 +2,10 @@ package ex5;
 
 @license(LGPL);
 
-//import inet.networklayer.autorouting.ipv4.FlatNetworkConfigurator;
-import inet.networklayer.configurator.ipv4.FlatNetworkConfigurator;
-import inet.node.inet.StandardHost;
-//import inet.nodes.inet.StandardHost;
+import inet.networklayer.autorouting.ipv4.FlatNetworkConfigurator;
+//import inet.networklayer.configurator.ipv4.FlatNetworkConfigurator;
+//import inet.node.inet.StandardHost;
+import inet.nodes.inet.StandardHost;
 
 network Ex5Network
 {
