@@ -27,22 +27,71 @@
 \date{Summer Term 2016}
 \maketitle	
 
+\tableofcontents
+\newpage
+
 \chapter{Overview}
+\section{Description}
+	We were tasked by a university to analyze the usefulness, practicability and limitations of a remote university building's direct radio link to the main university campus. 
+	
+	In this chapter we will attempt to fully capture the scenario at hand, abstract it into a model and extract the requirements that have to be fulfilled in order to have an applicable solution to connecting the remote building with the main campus via radio.
 \section{Requirement Analysis}
 	\subsection{Network Description}
+		The aim is to connect a remote building's network to the main university campus network. The fast cabled connection is endangered due to a construction site in close proximity to the building. That is why a direct radio link could be employed to maintain connectivity throughout the construction process.
+		
+		The following network usage cases could be identified:
+		
+		\begin{description}
+		\item[CCTV] A CCTV camera is connected to the remote building's router. \\ It is continuously transmitting a livestream of its video.
+		
+		\item[Wireless] A wireless access point operating on the \emph{802.11g} standard is connected to the remote building's router. \\Connected to this access point are users engaged in the following three activities.
+		\begin{description}
+			\item[FTP Upload] A single file upload can be observed that is ongoing throughout the simulation of the network.
+			\item[Video Livestream] A remotely located professor is livestreaming his or her lecture to a video conference laptop. \\This connection is bidirectional so that participating students can ask questions.
+			\item[Web Browsing] A variable number of students browsing the web is connected to the access point at any time.
+		\end{description}
+		\end{description}
+		
+		This describes the network inside the remote building that we trying to connect. The main campus' network can currently be simplified to three connections:
+		
+		\begin{description}
+			\item[Remote Professor] A fast connection to the remotely located professor's laptop is established via the Deutsches Forschungsnetz. \\It will communicate with the video conference laptop inside the remote building.
+			\item[Porter's Office] A CCTV monitoring station sits in the porter's office. \\The livestream of the remote building's CCTV camera will travel here.
+			\item[Internet] A VDSL connection to the Internet is present. \\Both web browsing and FTP upload traffic will have this destination.
+		\end{description}
+		
+		A graphical representation of the scenario is as follows and includes technical details such as channel delay and bandwidth:
+		
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{./simmodel.png}
+		\caption{A model of the scenario depicted}
+		\end{figure}
 	\subsection{Statistical Web Browsing Model}
 		The student's web browsing behavior is difficult to capture. We are going to model it by assuming a student issues an HTTP request, receives a response and then spends some time reading the response that is exponentially distributed. Missing at this point is the size of the response that follows a request. To model this we have analyzed a trace file containing 1000 response size values.
 		
-		We have chosen the \emph{chi squared goodness of fit test} to evaluate how well a distribution fits the observed data. As a first step we investigated the density of values within intervals that initially were of equal size and then potentially merged to remove those that contained no observed value. In this way 250 initially equal-sized intervals were reduced to 160 of which most have observed values associated to them. This is a graphical representation of what we found:
+		We have chosen the \emph{chi squared goodness of fit test} to evaluate how well a distribution fits the observed data. As a first step we investigated the density of values within request size intervals. These intervals initially were of equal size and the observed values were associated to an interval that they lied in. To remove intervals with no values associated to them, these were merged with neighboring intervals. In this way we obtained 160 intervals of which most have observed values associated to them. This is a graphical representation of what we found:
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{../tracefile_analysis/exp.png}
 		\caption{Request size value density in intervals}
 		\end{figure}
 		
-		We have the highest density of observed values in regions of low response sizes, and the number of observations decreases for increasing response sizes. This looks closely related to values coming from a \emph{negative exponential distribution}, which is why we decided to apply the test against this distribution.
+		We have the highest density of observed values in regions of low response sizes, and the number of observations decreases exponentially for increasing response sizes. This looks closely related to values coming from a \emph{negative exponential distribution}, which is why we decided to apply the test against this distribution.
 		
 		The test states that the observed values follow an Exponential distribution with mean $\lambda=580390\,\text{Byte}$ at a significance level of $99.95\%$.
 		
+	\subsection{Open Questions}
+		We have now modeled the scenario at hand. What remains unclear is
 		
+		\begin{enumerate}
+			\item What number of students can the network handle?
+			\item What are the bottlenecks of the network?
+			\item How is the lecture livestream's error rate correlated to the number of students?
+			\item What impact does the CCTV livestream have on the network?
+			\item What impact does the FTP upload have on the network?
+		\end{enumerate}
+		
+		In the next chapter we will try and answer these questions.
+
+\chapter{Simulation}
 
 \end{document}
