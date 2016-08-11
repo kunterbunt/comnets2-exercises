@@ -13,6 +13,8 @@ import ned.DatarateChannel;
 
 network UniversityNetwork
 {
+    volatile int numberOfStudents;
+    
     @display("bgb=662,419");
     types:
         channel InternetChannel extends DatarateChannel
@@ -63,8 +65,8 @@ network UniversityNetwork
         }
         Conference: WirelessHost {
             @display("p=192,152");
-        }
-        Students[2]: WirelessHost {
+        }       
+        Students[numberOfStudents]: WirelessHost {            
             @display("p=41,308");
         }
     connections:
