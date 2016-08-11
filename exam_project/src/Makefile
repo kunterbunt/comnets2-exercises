@@ -14,7 +14,7 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 #USERIF_LIBS = $(TKENV_LIBS)
 
 # C++ include paths (with -I)
-INCLUDE_PATH = -I.
+INCLUDE_PATH = -I. -Iresults
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -109,13 +109,14 @@ clean:
 	$(Q)-rm -rf $O
 	$(Q)-rm -f exam_project exam_project.exe libexam_project.so libexam_project.a libexam_project.dll libexam_project.dylib
 	$(Q)-rm -f ./*_m.cc ./*_m.h
+	$(Q)-rm -f results/*_m.cc results/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 

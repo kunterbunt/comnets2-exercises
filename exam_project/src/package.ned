@@ -1,8 +1,6 @@
 package exam_project;
 
 import inet.networklayer.autorouting.ipv4.FlatNetworkConfigurator;
-import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
-import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.ethernet.Eth100M;
 import inet.nodes.inet.Router;
 import inet.nodes.inet.StandardHost;
@@ -33,47 +31,48 @@ network UniversityNetwork
             datarate = 12Mbps;
         }
     submodules:
-        remote: Router {
-            @display("p=258,194");
-        }
-        main: Router {
-            @display("p=488,194");
-        }
         CCTV: StandardHost {
             @display("p=258,319");
-        }
-        accessPoint: AccessPoint {
-            @display("p=96,193");
         }
         CCTVMonitoring: StandardHost {
             @display("p=488,319");
         }
+        flatNetworkConfigurator: FlatNetworkConfigurator {
+            @display("p=342,44");
+        }
+        main: Router {
+            @display("p=488,227");
+        }
+        remote: Router {
+            @display("p=258,227");
+        }
         Internet: StandardHost {
-            @display("p=568,80");
+            @display("p=578,116");
         }
         Professor: StandardHost {
-            @display("p=421,80");
+            @display("p=432,116");
         }
-        Conference: WirelessHost {
-            @display("p=38,111");
+        accessPoint: AccessPoint {
+            @display("p=101,226");
         }
         FTPUploader: WirelessHost {
-            @display("p=135,129");
-        }
-        Students[2]: WirelessHost {
-            @display("p=38,283");
+            @display("p=101,152");
         }
         channelControl: ChannelControl {
-            @display("p=238,44");
+            @display("p=192,43");
         }
-        iPv4NetworkConfigurator: IPv4NetworkConfigurator {
-            @display("p=338,45");
+        Conference: WirelessHost {
+            @display("p=192,152");
+        }
+        Students[2]: WirelessHost {
+            @display("p=41,308");
         }
     connections:
-        remote.ethg++ <--> Eth100M <--> CCTV.ethg++;
-        remote.ethg++ <--> Eth100M <--> accessPoint.ethg++;
         remote.pppg++ <--> BackupChannel <--> main.pppg++;
-        main.ethg++ <--> Eth100M <--> CCTVMonitoring.ethg++;
-        main.ethg++ <--> InternetChannel <--> Internet.ethg++;
-        main.pppg++ <--> DFNChannel <--> Professor.pppg++;
+        main.pppg++ <--> Eth100M <--> CCTVMonitoring.pppg++;        
+        remote.pppg++ <--> Eth100M <--> CCTV.pppg++;
+        Internet.pppg++ <--> InternetChannel <--> main.pppg++;
+        Professor.pppg++ <--> DFNChannel <--> main.pppg++;
+
+        remote.ethg++ <--> Eth100M <--> accessPoint.ethg++;
 }
