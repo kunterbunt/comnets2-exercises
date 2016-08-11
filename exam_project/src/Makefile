@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for exam_project
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -L/home/kunterbunt/dev/omnetpp-4.6/samples/inet/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINET_PROJ=/home/kunterbunt/dev/omnetpp-4.6/samples/inet
+#  opp_makemake -f --deep -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/transport/tcp_common -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/base -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/applications/common -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/ieee80211/mac -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/applications/udpapp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/transport/udp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/ieee80211/radio/errormodel -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/ieee80211/radio -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/status -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/transport/sctp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/icmpv6 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/radio/propagation -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/transport/contract -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/ipv6tunneling -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/world/radio -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/contract -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/udp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/tcp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/radio -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/world/obstacles -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/common -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/ipv6 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/arp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/routing/aodv -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/contract -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/xmipv6 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/sctp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/ipv6 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/battery/models -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/autorouting/ipv4 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/networklayer/ipv4 -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/mobility/contract -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/applications/pingapp -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/linklayer/common -I/home/kunterbunt/dev/omnetpp-4.6/samples/inet/src/util/headerserializers/ipv4 -L/home/kunterbunt/dev/omnetpp-4.6/samples/inet/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINET_PROJ=/home/kunterbunt/dev/omnetpp-4.6/samples/inet
 #
 
 # Name of target to be created (-o option)
@@ -14,7 +14,47 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 #USERIF_LIBS = $(TKENV_LIBS)
 
 # C++ include paths (with -I)
-INCLUDE_PATH = -I. -Iresults
+INCLUDE_PATH = \
+    -I$(INET_PROJ)/src/transport/tcp_common \
+    -I$(INET_PROJ)/src/base \
+    -I$(INET_PROJ)/src/applications/common \
+    -I$(INET_PROJ)/src/util \
+    -I$(INET_PROJ)/src/linklayer/ieee80211/mac \
+    -I$(INET_PROJ)/src/applications/udpapp \
+    -I$(INET_PROJ)/src/transport/udp \
+    -I$(INET_PROJ)/src/linklayer/ieee80211/radio/errormodel \
+    -I$(INET_PROJ)/src/util/headerserializers \
+    -I$(INET_PROJ)/src/linklayer/ieee80211/radio \
+    -I$(INET_PROJ)/src/status \
+    -I$(INET_PROJ)/src/transport/sctp \
+    -I$(INET_PROJ)/src/networklayer/icmpv6 \
+    -I$(INET_PROJ)/src/linklayer/radio/propagation \
+    -I$(INET_PROJ)/src/transport/contract \
+    -I$(INET_PROJ)/src/networklayer/ipv6tunneling \
+    -I$(INET_PROJ)/src/world/radio \
+    -I$(INET_PROJ)/src/linklayer/contract \
+    -I$(INET_PROJ)/src/util/headerserializers/udp \
+    -I$(INET_PROJ)/src/util/headerserializers/tcp \
+    -I$(INET_PROJ)/src/linklayer/radio \
+    -I$(INET_PROJ)/src/world/obstacles \
+    -I$(INET_PROJ)/src/networklayer/common \
+    -I$(INET_PROJ)/src/networklayer/ipv6 \
+    -I$(INET_PROJ)/src/networklayer/arp \
+    -I$(INET_PROJ)/src/networklayer/routing/aodv \
+    -I$(INET_PROJ)/src/networklayer/contract \
+    -I$(INET_PROJ)/src \
+    -I$(INET_PROJ)/src/networklayer/xmipv6 \
+    -I$(INET_PROJ)/src/util/headerserializers/sctp \
+    -I$(INET_PROJ)/src/util/headerserializers/ipv6 \
+    -I$(INET_PROJ)/src/battery/models \
+    -I$(INET_PROJ)/src/networklayer/autorouting/ipv4 \
+    -I$(INET_PROJ)/src/networklayer/ipv4 \
+    -I$(INET_PROJ)/src/mobility/contract \
+    -I$(INET_PROJ)/src/applications/pingapp \
+    -I$(INET_PROJ)/src/linklayer/common \
+    -I$(INET_PROJ)/src/util/headerserializers/ipv4 \
+    -I. \
+    -Iresults
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -29,7 +69,7 @@ PROJECTRELATIVE_PATH = src
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
-OBJS =
+OBJS = $O/VideoStreamApp.o
 
 # Message files
 MSGFILES =
@@ -119,4 +159,17 @@ depend:
 	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
+$O/VideoStreamApp.o: VideoStreamApp.cc \
+	$(INET_PROJ)/src/applications/common/ApplicationBase.h \
+	$(INET_PROJ)/src/applications/udpapp/UDPBasicApp.h \
+	$(INET_PROJ)/src/base/Compat.h \
+	$(INET_PROJ)/src/base/ILifecycle.h \
+	$(INET_PROJ)/src/base/INETDefs.h \
+	$(INET_PROJ)/src/base/LifecycleOperation.h \
+	$(INET_PROJ)/src/base/NodeOperations.h \
+	$(INET_PROJ)/src/base/OperationalBase.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv4Address.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv6Address.h \
+	$(INET_PROJ)/src/networklayer/contract/IPvXAddress.h \
+	$(INET_PROJ)/src/transport/contract/UDPSocket.h
 
