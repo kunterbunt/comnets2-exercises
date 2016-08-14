@@ -1,0 +1,1 @@
+scp omnetpp.ini Makefile makemakefiles main.irt remote.irt package.ned VideoStreamApp.cc VideoStreamApp.ned run_simulation.sh prepare_simulation.sh  xxxxxx@l00p32.rz.tu-harburg.de:~/workspace/exam_project/
