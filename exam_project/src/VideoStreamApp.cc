@@ -7,7 +7,7 @@ public:
 protected:
     typedef UDPBasicApp super;
 
-    void initialize(int stage) override {
+    void initialize(int stage) {
         super::initialize(stage);
         this->durationSum = 0;
         this->avgDuration = 0;
@@ -16,7 +16,7 @@ protected:
         this->errorRate = 0;
     }
 
-    void sendPacket() override {
+    void sendPacket() {
         char msgName[32];
         // Put current time into message name.
         simtime_t now = simTime();
@@ -31,7 +31,7 @@ protected:
         numSent++;
     }
 
-    void processPacket(cPacket *pk) override {
+    void processPacket(cPacket *pk) {
         numReceived++;
         emit(rcvdPkSignal, pk);
 
@@ -54,7 +54,7 @@ protected:
         }
     }
 
-    void finish() override {
+    void finish() {
         this->errorRate = ((double) numTooLatePackets) / ((double) this->numReceived);
         recordScalar("#droppedBecauseLate", numTooLatePackets);
         recordScalar("avgDuration", avgDuration);
