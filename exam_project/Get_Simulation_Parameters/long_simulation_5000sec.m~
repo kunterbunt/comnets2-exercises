@@ -6,7 +6,6 @@ clear
 M1 = csvread('vector.csv');
 x1=M1(:,2);
 figure
-set(gca,'FontSize',28)
 hold on
 plot(x1, 'b');
 
@@ -23,7 +22,6 @@ ylabel('Lecture livestreaming throughput [bits/sec]');
 
 figure
 hold on
-set(gca,'FontSize',28)
 variances = [];
 for m = 250:250:1000
    avgs=zeros(1, ceil(length(x1) / m));
@@ -35,10 +33,9 @@ for m = 250:250:1000
         j = j + 1;
     end
     variances = [variances, var(avgs)];
-    var(avgs)
-    m
 end
 bar(variances./variances(1));
-set(gca,'Xtick',1:4,'XTickLabel',{'m=250','m=500', 'm=750', 'm=1000'})
-ylabel('Throughput variance relative to m=250');
+set(gca,'XTick',[0:1:4])
+set(gca,'XTickLabel',['two';'b';'c';'d'])
+% legend('m=250','m=500', 'm=750', 'm=1000');
 hold off

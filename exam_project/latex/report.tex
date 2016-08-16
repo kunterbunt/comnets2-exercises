@@ -79,7 +79,7 @@
 		
 		The test states that the observed values follow an Exponential distribution with mean $\lambda=580390\,\text{Byte}$ at a significance level of $99.95\%$.
 		
-	\subsection{Open Questions}
+	\subsection{Open Questions}\label{sec:openquestions}
 		We have now modeled the scenario at hand. What remains unclear is
 		
 		\begin{enumerate}
@@ -92,6 +92,54 @@
 		
 		In the next chapter we will try and answer these questions.
 
-\chapter{Simulation}
+\chapter{Evaluation}
+\section{Simulation}
+	We are going to answer the open questions from section \ref{sec:openquestions} through simulation. For this we have modeled the scenario using the \emph{omnet++} simulator.
+	
+	\subsection{Configurations}
+		We have set up the simulations in the following ways.
+		\begin{description}
+			\item[Simulation Time] Deciding upon a reasonable simulation time is essential. There are several different protocols in use here. The \emph{802.11g WLAN standard} has, for example, a certain time that it takes until handshakes are complete and regular transmission can start.			
+			
+			That is why we have simulated the scenario for an extensive period of $5000\text{s}$ to see how throughput fluctuates in which time frames. Figure \ref{fig:5000s} shows the throughput of the remotely located Professor's laptop that livestreams his lecture to the remote building's conference laptop. We chose this use case as it represents the most time critical of all:
+			
+			\begin{figure}[H]
+				\center\includegraphics[width=\textwidth]{../Get_Simulation_Parameters/long_simulation_5000sec.png}
+				\caption{Throughput over $5000\text{s}$}
+				\label{fig:5000s}
+			\end{figure}
+			
+			We concluded from this graph that over a time slice of $300\text{s}$ you can already find a reasonable average that stands in a meaningful relation to any other $300\text{s}$ time period.
+			
+			
+			\item[Number of Repetitions] As simulations rely on random events and those build upon pseudo-random numbers that we generate, it is important to run each and every simulation several times with new seeds for the random number generators in order to cover a meaningful number of possibilities with the goal of approximating real world behavior. 
+			
+			Each run's performance is recorded and denoted as a \emph{sample}. Following the \emph{Central Limit Theorem} we can assume a sample mean to stem from a \emph{Normal distribution}. 
+			
+			A sample mean estimate
+			\[\mu_m=\frac{1}{m}\sum^m_{j=1}y_j\]
+			where $m=\text{number of samples}$
+			\\and $y_i=\text{i\textsuperscript{th} sample}$
+			\\has a confidence interval of
+			\[\mu_m-\frac{z\cdot \sigma}{\sqrt{m}}\leq \mu \leq \mu_m+\frac{z\cdot \sigma}{\sqrt{m}}\]
+			where $\sigma=\text{Normal distribution's variance}$
+			\\and $z$ is found using a Normal distribution's table using the required level of confidence $1-\alpha$, $\alpha\in [0,1]$.
+			
+			So apparently the confidence interval depends on $\frac{1}{\sqrt{m}}$, which looks like this:
+			
+			\begin{figure}[H]
+				\center\includegraphics[width=\textwidth]{../Get_Simulation_Parameters/Number_Of_Runs.png}
+				\caption{Behavior of $\frac{1}{\sqrt{x}}$}
+				\label{fig:numberofruns}
+			\end{figure}	
+			
+			In general it should hold that the more repetitions your simulation goes through, the closer its behavior gets to real world conditions. But as with many things, we want to find a good balance between \emph{correctness} and the \emph{required effort}, or a good efficiency in other words. From investigating figure \ref{fig:numberofruns} we concluded that setting $m=20$ seems like a good trade-off as at that point increasing $m>20$ further does not yield much better results anymore, relative to values of $m<20$ where performance gains are more significant.
+			
+			
+			\item[Number of students] As the number of students is variable we simulated for a number of values, narrowing down the maximum number of students that could be supported when taking all requirements into account.
+			
+			
+			\item[CCTV Camera] It was communicated to us that turning off the CCTV camera at the remote building location is an option. Thus we simulated every scenario once with the camera \emph{on} and once with it being \emph{off}.
+		\end{description}		
 
 \end{document}
