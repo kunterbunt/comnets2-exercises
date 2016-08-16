@@ -96,7 +96,7 @@
 \section{Simulation}
 	We are going to answer the open questions from section \ref{sec:openquestions} through simulation. For this we have modeled the scenario using the \emph{omnet++} simulator.
 	
-	\subsection{Configurations}
+	\subsection{Configuration}
 		We have set up the simulations in the following ways.
 		\begin{description}
 			\item[Simulation Time] Deciding upon a reasonable simulation time is essential. There are several different protocols in use here. The \emph{802.11g WLAN standard} has, for example, a certain time that it takes until handshakes are complete and regular transmission can start.			
@@ -115,7 +115,7 @@
 			
 			\begin{figure}[H]
 				\center\includegraphics[width=\textwidth]{../Get_Simulation_Parameters/relative_variance.png}
-				\caption{Relative variance of the throughput}
+				\caption{Relative variance of sliding window throughput means, where windows were of length $m$, on $5000\text{s}$ data}
 				\label{fig:relativevariance}
 			\end{figure}
 			
@@ -153,11 +153,11 @@
 			\item[CCTV Camera] It was communicated to us that turning off the CCTV camera at the remote building location is an option. Thus we simulated every scenario once with the camera \emph{on} and once with it being \emph{off}.
 		\end{description}	
 		
-	\subsection{Observations}	
-		\subsubsection{Lecture Livestreaming Error Rate}
+	\subsection{Observation}\label{chp:observations}
+		\subsubsection{Lecture Livestreaming Error Rate}\label{sec:errorrate}
 			The most time critical application is that of the bidirectional lecture video stream. We will investigate it in this section. 
 			
-			The livestream demands that the packet delay remains $<100\text{ms}$. Packets that arrive later than that are dropped and contribute to the error rate. This error rate must stay below $5\%$ in order to have a functioning livestream. Figure \ref{fig:errorrate} shows us the behavior of this error rate. 
+			The livestream demands that the packet delay remains $<100\text{ms}$. Packets that arrive later than that are dropped and contribute to the error rate. This error rate must stay below $5\%$ in order to have a functioning livestream. Figure \ref{fig:errorrate} shows the behavior of this error rate. 
 			
 			\begin{figure}[H]
 				\center\includegraphics[width=\textwidth]{../Results_Analysis/CCTVvsNONCCTV_CI.png}
@@ -165,6 +165,15 @@
 				\label{fig:errorrate}
 			\end{figure}
 			
-			The blue bar represents a \emph{turned off} CCTV camera, a yellow one a \emph{turned on} camera.
+			The blue bar represents a \emph{turned off} CCTV camera, a yellow one a \emph{turned on} camera. As we can see, the cut-off point seems to lie at $n=50$ students. For a turned-on CCTV camera the error rate lies just barely outside the allowed range. For a turned-off camera the livestream can still go with the occasional hiccup as the confidence interval tells us that some values lie outside the $5\%$ maximum.						
+			
+		\subsubsection{File Uploading Behavior}\label{sec:ftp}
+		
+		\subsubsection{Web Browsing Behavior}\label{sec:http}
+		
+	\subsection{Analysis}
+		We have made many interesting observations in section \ref{chp:observations}. In this section we will try to analyze these observations, interpret them, evaluate the usefulness of the backup radio channel and give ideas on how to improve the scenario.
+		
+		As section \ref{sec:errorrate} showed us, more than $n=50$ students can certainly not be supported, even if the camera is turned off. If the building has a way of knowing the number of students present, then we advise the administrator to turn off the CCTV camera if the number of students goes far beyond $n\geq 45$. Staying below this threshold, running the CCTV camera should not be a problem. Approaching $n=50$ students, given a turned off CCTV camera, the livestream will start going beyond the critical $5\%$ error rate and start having a notable packet loss.	
 
 \end{document}
