@@ -151,6 +151,20 @@
 			
 			
 			\item[CCTV Camera] It was communicated to us that turning off the CCTV camera at the remote building location is an option. Thus we simulated every scenario once with the camera \emph{on} and once with it being \emph{off}.
-		\end{description}		
+		\end{description}	
+		
+	\subsection{Observations}	
+		\subsubsection{Lecture Livestreaming Error Rate}
+			The most time critical application is that of the bidirectional lecture video stream. We will investigate it in this section. 
+			
+			The livestream demands that the packet delay remains $<100\text{ms}$. Packets that arrive later than that are dropped and contribute to the error rate. This error rate must stay below $5\%$ in order to have a functioning livestream. Figure \ref{fig:errorrate} shows us the behavior of this error rate. 
+			
+			\begin{figure}[H]
+				\center\includegraphics[width=\textwidth]{../Results_Analysis/CCTVvsNONCCTV_CI.png}
+				\caption{Lecture Livestream Error Rate}
+				\label{fig:errorrate}
+			\end{figure}
+			
+			The blue bar represents a \emph{turned off} CCTV camera, a yellow one a \emph{turned on} camera.
 
 \end{document}

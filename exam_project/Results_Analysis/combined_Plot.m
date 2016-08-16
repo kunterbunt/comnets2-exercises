@@ -63,3 +63,7 @@ errorbar(x,meanY1,varianceY1,'gx')
 ylabel('Error Rate [%]');
 title('CCTV vs Non CCTV')
 set(gca,'XTickLabel',{'10 Students', '25 Students', '50 Students', '100 Students'})
+
+set(gca,'FontSize',28);
+legend('CCTV on', '', 'CCTV off', 'Location', 'northwest');
+axis([0.5 4.5 0 15])
