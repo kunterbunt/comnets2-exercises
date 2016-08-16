@@ -25,20 +25,19 @@ figure
 hold on
 set(gca,'FontSize',28)
 variances = [];
-for m = 250:250:1000
-   avgs=zeros(1, ceil(length(x1) / m));
+m = [250; 350; 500; 750; 1000]
+for m1 = 1:length(m)
+   avgs=zeros(1, ceil(length(x1) / m(m1)));
     j = 1;
-    for i=0:m:length(x1)-1
+    for i=0:m(m1):length(x1)-1
         from = i + 1;
-        to = min(i + m, length(x1));
+        to = min(i + m(m1), length(x1));
         avgs(j) = mean(x1(from:to));
         j = j + 1;
     end
-    variances = [variances, var(avgs)];
-    var(avgs)
-    m
+    variances = [variances, var(avgs)];    
 end
 bar(variances./variances(1));
-set(gca,'Xtick',1:4,'XTickLabel',{'m=250','m=500', 'm=750', 'm=1000'})
+set(gca,'Xtick',1:5,'XTickLabel',{'m=250s','m=350s', 'm=500s', 'm=750s', 'm=1000s'})
 ylabel('Throughput variance relative to m=250');
 hold off
