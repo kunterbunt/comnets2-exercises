@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scave:Analysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:scave="http://www.omnetpp.org/omnetpp/scave">
+  <inputs>
+    <inputs name="/exam_project/results/3rd_simulation_sca/new_two_SixtyfiveStudentsNOCCTV/New-two-SixtyFiveStudentsNOCCTV-*.vec"/>
+    <inputs name="/exam_project/results/3rd_simulation_sca/new_two_SixtyfiveStudentsNOCCTV/New-two-SixtyFiveStudentsNOCCTV-*.sca"/>
+  </inputs>
+  <datasets/>
+  <chartSheets/>
+</scave:Analysis>
