@@ -1,0 +1,16 @@
+function plot_http_throughput()
+    filenames = {'new-two-ThirtyfiveStudentsNOCCTV-rcvdPkSumBytes-1.csv', 'new-two-ThirtyfiveStudents-rcvdPkSumBytes-1.csv', 'new-two-FourtyfiveStudentsNOCCTV-rcvdPkSumBytes-1.csv', 'new-two-FortyfiveStudents-rcvdPkSumBytes-1.csv', 'new-two-FiftyfiveStudentsNOCCTV-rcvdPkSumBytes-1.csv', 'new-two-FiftyfiveStudents-rcvdPkSumBytes-1.csv', 'new-two-SixtyfiveStudentsNOCCTV-rcvdPkSumBytes-1.csv', 'new-two-SixtyiveStudents-rcvdPkSumBytes-1.csv'};
+    xlabels = {'35 no CCTV', '35', '45 no CCTV'};
+    meansVec = [];
+    for i=1:length(filenames)        
+        runMean = getMeanFromCSV(filenames{1, i});
+        meansVec = [meansVec, runMean];
+    end
+    
+    meansVec = meansVec./1000 % kB
+    meansVec = meansVec./1000 % MB
+    CI = getCI(meansVec, 0.05);
+    
+    bar(meansVec)
+    ylabel('Total Throughput [MB]');
+end

@@ -1,0 +1,13 @@
+function [observed_mean CI] = getMeanFromCSV(filename, numberOfUsers)
+    observed_values = csvread(filename);
+    meansVec = [];
+    j = 1;    
+    for i = 0:numberOfUsers:length(observed_values) - numberOfUsers
+        from = i + 1;
+        to = from + numberOfUsers - 1;
+        runMean = mean(observed_values(from:to));
+        meansVec = [meansVec; runMean]; % Holds mean of
+    end
+    CI = getCI(meansVec, 0.05);  
+    observed_mean = mean(meansVec);
+end

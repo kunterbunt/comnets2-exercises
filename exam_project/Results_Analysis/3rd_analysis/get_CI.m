@@ -2,7 +2,7 @@
 %(1-alfa) Confidence interval of a vector of means "filename" with m runs
 %i.e: get_CI('TenStudents.csv',20,0.05)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function calculateConfidenceInterval = get_CI(filename, m, alfa)
+function CI = get_CI(filename, m, alfa)
 
 meansVector = csvread(filename); %Import CSV vector with the mean of each run
 

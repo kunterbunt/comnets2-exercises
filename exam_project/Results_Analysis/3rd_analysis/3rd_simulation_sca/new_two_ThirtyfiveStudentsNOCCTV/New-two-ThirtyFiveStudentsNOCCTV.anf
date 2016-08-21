@@ -3,6 +3,7 @@
   <inputs>
     <inputs name="/exam_project/results/3rd_simulation_sca/new_two_ThirtyfiveStudentsNOCCTV/New-two-ThirtyFiveStudentsNOCCTV-*.vec"/>
     <inputs name="/exam_project/results/3rd_simulation_sca/new_two_ThirtyfiveStudentsNOCCTV/New-two-ThirtyFiveStudentsNOCCTV-*.sca"/>
+    <inputs name="./*.sca"/>
   </inputs>
   <datasets/>
   <chartSheets/>
