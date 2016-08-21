@@ -187,7 +187,7 @@
 		\section{Supported number of students $n$}
 		As section \ref{sec:errorrate} showed us, more than $n=50$ students can certainly not be supported, even if the camera is turned off, if we want to maintain a lecture livestream's error rate of $<5\%$. If the stream becomes noticeably erroneous, then we advise the administrator to turn off the CCTV camera. If the number of students goes far beyond $n\geq 45$, turning off the camera results in the system being able to support an additional, small number of students. Staying below this threshold, running the CCTV camera should not be a problem. Approaching $n=50$ students, given a turned off CCTV camera, the livestream will start going beyond the critical $5\%$ error rate and start having a notable packet loss.	
 		
-		\section{Influences on the generated traffic}
+		\section{Radio link traffic}
 		Many inputs to the backup radio link are known to us. Only the number of students is variable here. This section aims at breaking down what contributes to the backup radio link's traffic.
 		
 			\subsection{CCTV camera's influence on the generated traffic}\label{sec:cctvinfluence}
@@ -216,5 +216,10 @@
 			The constant FTP upload that takes place is more difficult to capture. FTP is an application layer protocol that operates on TCP. As such it has no knowledge of the network's current state. It passes on as much data as it wants to send, leaving the job of breaking down this data into chunks that \emph{can} actually be sent to the TCP protocol. 
 			
 			One can assume that the FTP traffic will swallow up all available bandwidth on the channel.
+			
+			\subsection{Radio link throughput}
+			Putting the pieces together we obtain the backup channel's average throughput:
+			
+			
 
 \end{document}

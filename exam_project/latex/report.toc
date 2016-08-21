@@ -13,7 +13,8 @@
 \contentsline {subsection}{\numberline {2.2.3}Web Browsing Behavior}{10}
 \contentsline {chapter}{\numberline {3}Analysis}{11}
 \contentsline {section}{\numberline {3.1}Supported number of students $n$}{11}
-\contentsline {section}{\numberline {3.2}Influences on the generated traffic}{11}
+\contentsline {section}{\numberline {3.2}Radio link traffic}{11}
 \contentsline {subsection}{\numberline {3.2.1}CCTV camera's influence on the generated traffic}{11}
 \contentsline {subsection}{\numberline {3.2.2}Lecture livestream's influence on the generated traffic}{12}
 \contentsline {subsection}{\numberline {3.2.3}FTP upload's influence on the generated traffic}{13}
+\contentsline {subsection}{\numberline {3.2.4}Radio link throughput}{13}
