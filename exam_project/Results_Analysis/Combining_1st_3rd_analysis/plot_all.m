@@ -86,3 +86,4 @@ Z1=-5:1:5;
 y2=ones(length(Z1));
 y2=y2.*5;
 plot(Z1,y2)
+set(gca,'FontSize',28)
