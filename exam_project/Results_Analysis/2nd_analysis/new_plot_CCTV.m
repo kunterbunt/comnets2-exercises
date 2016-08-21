@@ -1,15 +1,15 @@
 %1.Create files from .csv.
-get_CI('New-ThirtyFiveStudents.csv',20,0.05)
-get_CI('New-FourtyFiveStudents.csv',20,0.05)
-get_CI('New-FiftyFiveStudents.csv',20,0.05)
-get_CI('New-SixtyFiveStudents.csv',20,0.05)
+get_CI('new-ThirtyfiveStudents.csv',20,0.05)
+get_CI('new-FourtyfiveStudents.csv',20,0.05)
+get_CI('new-FiftyfiveStudents.csv',20,0.05)
+get_CI('new-SixtyfiveStudents.csv',20,0.05)
 
 
 %2. Load all CI
-file1 = load('New-ThirtyFiveStudentsCI.dat');
-file2 = load('New-FourtyFiveStudentsCI.dat');
-file3 = load('New-FiftyFiveStudentsCI.dat');
-file4 = load('New-SixtyFiveStudentsCI.dat');
+file1 = load('new-ThirtyfiveStudentsCI.dat');
+file2 = load('new-FourtyfiveStudentsCI.dat');
+file3 = load('new-FiftyfiveStudentsCI.dat');
+file4 = load('new-SixtyfiveStudentsCI.dat');
 
 %3. Scale to %
 file1=100.*file1;
