@@ -215,7 +215,15 @@
 			\subsection{FTP upload's influence on the generated traffic}
 			The constant FTP upload that takes place is more difficult to capture. FTP is an application layer protocol that operates on TCP. As such it has no knowledge of the network's current state. It passes on as much data as it wants to send, leaving the job of breaking down this data into chunks that \emph{can} actually be sent to the TCP protocol. 
 			
-			One can assume that the FTP traffic will swallow up all available bandwidth on the channel.
+			One can assume that the FTP traffic will swallow up the available traffic up to its maximum:
+			
+			\[d_\text{\tiny FTP}^\text{\tiny max}=\frac{\text{MTU}}{20\text{ms}}=\frac{1500\text{B}}{20\text{ms}}=\frac{0.6\text{MBit}}{\text{s}}\]
+			
+			\emph{MTU} refers to the \emph{maximum transmission unit} that is determined by the Ethernet protocol. We are modeling the data stream as transmissions every $20\text{ms}$.
+			
+			It follows that FTP takes up this much of the channel's bandwidth:
+			
+			\[d_\text{\tiny FTP}^\text{\tiny max}=0.05\cdot B_\text{\tiny CHN}\]
 			
 			\subsection{Radio link throughput}
 			Putting the pieces together we obtain the backup channel's average throughput:
