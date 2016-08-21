@@ -38,6 +38,6 @@ for m1 = 1:length(m)
     variances = [variances, var(avgs)];    
 end
 bar(variances./variances(1));
-set(gca,'Xtick',1:5,'XTickLabel',{'m=250s','m=350s', 'm=500s', 'm=750s', 'm=1000s'})
-ylabel('Throughput variance relative to m=250');
+set(gca,'Xtick',1:5,'XTickLabel',{'t=250s','t=350s', 't=500s', 't=750s', 't=1000s'})
+ylabel('Throughput variance relative to t=250');
 hold off

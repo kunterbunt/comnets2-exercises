@@ -111,17 +111,17 @@
 			
 			Our approach to this problem looks like this:
 			
-			We want to find a simulation time $m$ so that if we went through the throughput depicted in figure \ref{fig:5000s} and sliced it into time intervals of length $m$ - in a sliding window-like manner, and then averaged the throughput values inside the sliding windows, we want these means to be relatively close to each other. This would mean that our $m$ is large enough so that it does not matter much which sliding window we took, the result would be more or less the same. This is equivalent to looking at the variance of these mean values. We applied this procedure on the data from the $5000\text{s}$ run for all $m\in\{250\text{s},\, 350\text{s},\, 500\text{s},\, 750\text{s},\, 1000\text{s}\}$. The result can be seen in figure \ref{fig:relativevariance}.
+			We want to find a simulation time $t$ so that if we went through the throughput depicted in figure \ref{fig:5000s} and sliced it into time intervals of length $t$ - in a sliding window-like manner, and then averaged the throughput values inside the sliding windows, we want these means to be relatively close to each other. This would mean that our $t$ is large enough so that it does not matter much which sliding window we took, the result would be more or less the same. This is equivalent to looking at the variance of these mean values. We applied this procedure on the data from the $5000\text{s}$ run for all $t\in\{250\text{s},\, 350\text{s},\, 500\text{s},\, 750\text{s},\, 1000\text{s}\}$. The result can be seen in figure \ref{fig:relativevariance}.
 			
 			\begin{figure}[H]
 				\center\includegraphics[width=\textwidth]{../Get_Simulation_Parameters/relative_variance.png}
-				\caption{Relative variance of sliding window throughput means, where windows were of length $m$, on $5000\text{s}$ data}
+				\caption{Relative variance of sliding window throughput means, where windows were of length $t$, on $5000\text{s}$ data}
 				\label{fig:relativevariance}
 			\end{figure}
 			
-			One can observe that doubling $m$ from $m=250\text{s}$ to $m=500\text{s}$ roughly halves the variance. Increasing it further greatly increases the time required to run these simulations while gaining relatively little.
+			One can observe that doubling $t$ from $t=250\text{s}$ to $t=500\text{s}$ roughly halves the variance. Increasing it further greatly increases the time required to run these simulations while gaining relatively little.
 			
-			This led us to the decision of setting the simulation time $m=500\text{s}$.
+			This led us to the decision of setting the simulation time $t=500\text{s}$.
 			
 			\item[Number of Repetitions] As simulations rely on random events and those build upon pseudo-random numbers that we generate, it is important to run each and every simulation several times with new seeds for the random number generators in order to cover a meaningful number of possibilities with the goal of approximating real world behavior. 
 			
