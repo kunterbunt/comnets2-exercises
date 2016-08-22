@@ -19,7 +19,7 @@
 \usepackage{fancyhdr}
 \fancypagestyle{plain}{
   \fancyhf{}% Clear header/footer
-  \fancyhead[R]{\includegraphics[width=3cm]{TUHH.png}}
+  \fancyhead[R]{\includegraphics[width=4.5cm]{TUHH.png}}
 }
 \pagestyle{plain}
 \usepackage{xcolor}
@@ -27,11 +27,28 @@
 
 \renewcommand{\quote}[1]{``#1''}
 
+\makeatletter
+\renewenvironment{titlepage}
+    {%
+      \if@twocolumn
+        \@restonecoltrue\onecolumn
+      \else
+        \@restonecolfalse\newpage
+      \fi
+      \thispagestyle{plain}%
+      %\setcounter{page}\z@
+    }%
+    {\if@restonecol\twocolumn \else \newpage \fi
+    }
+\makeatother
+
 \begin{document}
 \title{Report on Exam Task\\Simulation and Modelling of Communication Networks}
 \author{Nicolás Chopitea Kober, Sebastian Lindner}
 \date{Summer Term 2016}
+\begin{titlepage}
 \maketitle	
+\end{titlepage}
 
 \tableofcontents
 \newpage
