@@ -12,6 +12,8 @@ function plot_http_throughput()
         CIsVec = [CIsVec; fileCI];
         meansVec = [meansVec; fileMean];
     end
+    
+    meansVec
         
     figure    
     hold on

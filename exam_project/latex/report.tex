@@ -190,18 +190,34 @@
 			What is interesting to observe is that turning the CCTV camera on or off does not influence the total in a significant way. For $n=45$ the total actually increases for an online camera, which seems counterintuitive at first glance. We will investigate this further in secions \ref{sec:cctvinfluence} and chapter \ref{sec:analysis}.		
 			
 		\subsection{File Uploading Behavior}\label{sec:ftp}		
+			The volume of data that the FTP client uploads during the simulation looks like this:
+			\begin{figure}[H]
+				\center\includegraphics[width=\textwidth]{../Results_Analysis/FTP/ftp.png}
+				\caption{Total upload traffic of the FTP client over $500\text{s}$}
+				\label{fig:ftp}
+			\end{figure}		
 			
+			As one could expect, if more users share the network then the FTP client will have less chances of sending out its data. Interestingly the client is able to push out marginally more data if the CCTV camera is online. A more in depth analysis of this can be found in section \ref{sec:ftpinfluence}.
+			
+		\subsection{Backup Channel Utilization}
+			\begin{figure}[H]
+				\center\includegraphics[width=\textwidth]{../Results_Analysis/ChannelThroughput/channel_throughput.png}
+				\caption{Average Channel Throughput over $500\text{s}$}
+				\label{fig:channelthroughput}
+			\end{figure}	
+			
+			As we can see, the average channel utilization is below its maximum of $12\frac{\text{Mbit}}{s}$ even for $n=65$ students which is a use case that can not support a lecture livestream error rate below $5\%$.	
 		
 	\chapter{Analysis}\label{sec:analysis}
 		We have made many interesting observations in section \ref{chp:observations}. In this chapter we will try to analyze these observations, interpret them, evaluate the usefulness of the backup radio channel and give ideas on how to improve the scenario.				
 		
-		\section{Supported number of students}
+		\section{Supported Number of Students}
 		As section \ref{sec:errorrate} showed us, more than $n=50$ students can certainly not be supported, even if the camera is turned off, if we want to maintain a lecture livestream's error rate of $<5\%$. If the stream becomes noticeably erroneous, then we advise the administrator to turn off the CCTV camera. If the number of students goes far beyond $n\geq 45$, turning off the camera results in the system being able to support an additional, small number of students. Staying below this threshold, running the CCTV camera should not be a problem. Approaching $n=55$ students, given a turned off CCTV camera, the livestream will start going beyond the critical $5\%$ error rate and start having a notable packet loss.	
 		
-		\section{Radio link traffic}
+		\section{Radio Link Traffic}
 		Many inputs to the backup radio link are known to us. Only the number of students is variable here. This section aims at breaking down what contributes to the backup radio link's traffic.
 		
-			\subsection{CCTV camera's influence on the generated traffic}\label{sec:cctvinfluence}
+			\subsection{CCTV Camera's Influence on the Generated Traffic}\label{sec:cctvinfluence}
 			As observed in section \ref{fig:http} the CCTV camera does not appear to affect the wireless users' throughput in a significant way. Lets recall the relevant network setup:
 			
 			\begin{figure}[H]
@@ -218,7 +234,7 @@
 			
 			\[d_\text{\tiny CCTV}=\frac{1}{6}\cdot B_\text{\tiny CHN}\]
 		
-			\subsection{Lecture livestream's influence on the generated traffic}
+			\subsection{Lecture Livestream's Influence on the Generated Traffic}
 			We have knowledge about the technical details of the livestream: 
 		\[d_\text{\tiny STR}^\text{1-way}=\frac{1400\text{B}}{40\text{ms}}=\frac{0.28\text{MBit}}{\text{s}}\]
 		
@@ -226,18 +242,46 @@
 			
 			\[\Rightarrow d_\text{\tiny STR}=0.0467\cdot B_\text{\tiny CHN}\]
 			
-			\subsection{FTP upload's influence on the generated traffic}
-			The constant FTP upload that takes place is more difficult to capture. FTP is an application layer protocol that operates on TCP. As such it has no knowledge of the network's current state. It passes on as much data as it wants to send, leaving the job of breaking down this data into chunks that \emph{can} actually be sent to the TCP protocol. 
+			\subsection{FTP and HTTP Influence on the Generated Traffic}\label{sec:ftpinfluence}
+			The constant FTP upload that takes place is more difficult to capture. FTP is an application layer protocol that operates on TCP. As such it has no knowledge of the network's current state. It passes on as much data as it wants to send, leaving the job of breaking down this data into chunks that \emph{can} actually be sent to the TCP protocol. 										
+			Similarly the HTTP traffic has random elements. We have determined that
+			\[B_\text{\tiny CHN}^\text{\tiny usage} = d_\text{\tiny STR}+d_\text{\tiny CCTV}+d_\text{\tiny HTTP}+d_\text{\tiny FTP}\]
+			\[\Leftrightarrow\]
+			\[B_\text{\tiny CHN}^\text{\tiny usage} = 0.0467\cdot B_\text{\tiny CHN} + \frac{1}{6}\cdot B_\text{\tiny CHN} + d_\text{\tiny HTTP} + d_\text{\tiny FTP}\]
 			
+			which leaves for HTTP and FTP traffic
 			
+			\[B_\text{\tiny CHN}-B_\text{\tiny CHN}^\text{\tiny usage}=0.786633333B_\text{\tiny CHN} - d_\text{\tiny HTTP} - d_\text{\tiny FTP}\]
 			
-			\subsection{Radio link throughput}
-			Putting the pieces together we obtain the backup channel's average throughput:
-			\begin{figure}[H]
-				\center\includegraphics[width=\textwidth]{../Results_Analysis/ChannelThroughput/channel_throughput.png}
-				\caption{Average Channel Throughput over $500\text{s}$}
-				\label{fig:channelthroughput}
-			\end{figure}	
+			and so
 			
+			\[d_\text{\tiny HTTP} + d_\text{\tiny FTP}\leq \frac{4}{5}B_\text{\tiny CHN}\]					
+			
+%			The WLAN subnetwork access point simultaneously handles $n+\underbrace{1}_\text{FTP}+\underbrace{1}_\text{STR}=n+2$ users. The \emph{802.11g standard} supports $54\frac{\text{Mbit}}{\text{s}}$. So each one out of $n+2$ users has a theoretical maximum throughput of $\frac{54\text{Mbit/s}}{n+2}$:
+%			
+%			\begin{center}
+%  			\begin{tabular}{c | c | c}
+%  					\hline
+%					$n$ & Theoretical $\frac{\text{Mbit/s}}{\text{user}}$ & Measured downlink http $\frac{\text{Mbit/s}}{\text{user}}$\\ \hline
+%			    	$35$ & $1.46$ & $0.023$ \\ 
+%			    	$45$ & $1.15$ & $0.019$ \\ 		    			    			
+%			    	$55$ & $0.95$ & $0.019$ \\ 
+%			    	$65$ & $0.81$ & $0.018$ \\ 		
+%			\end{tabular}									
+%			\end{center}
+
+		 \section{Conclusion}
+		 	HTTP and FTP traffic makes up the bulk of the data transmitted over the backup radio link. CCTV and videostream data is no more than $\frac{1}{5}$ of the total traffic. 
+		 	
+		 	As figure \ref{fig:channelthroughput} demonstrates the channel bandwidth is large enough to support the generated traffic on average. Even for a large number of students $n\geq 55$ the channel is -~on~average~- not fully utilized. 
+		 	
+		 	The lecture livestream's error rate however still suffers from a number of students that large. The livestream has a notable error rate of larger than $5\%$ on average for $n\geq 50$ if the CCTV camera is online, and for $n\geq 55$ if it is offline. From this we can conclude that turning off the camera will lead to an addition $5$ students that can browse the web while fulfilling all requirements.
+		 	
+		 	HTTP and FTP traffic behaves in an expected kind of way. HTTP download and FTP upload traffic decreases when more users share the network. FTP upload traffic suffers a bigger hit than the average HTTP client, which is explained by the WLAN protocol not prioritizing traffic and so the single FTP client's share of the time accredited to it becomes proportionally smaller compared to that of all the HTTP clients. Both HTTP and FTP performances remain in a reasonable window in all cases.
+		 	
+		 	To sum it up, the backup channel seems sufficient. Its bandwidth is large enough to support the generated traffic. Its average utilization is below its maximum when the livestream error rate starts to shoot up, so the bottleneck is elsewhere.
+		 	
+		 \section{Improvements}
+		 	As we have found out the channel bandwidth is sufficient and the optional CCTV camera contributes a foreseeable, constant amount of data. To improve the results the time share each client in the WLAN subnetwork is given could be adjusted to account for \emph{Quality of Service} for the livestream. There are several networking standards available that implement such a feature. \emph{IEEE 802.1q} is just one of many and its technical description goes beyond the scope of this report. As we have learned in the previous sections, dropped packets that contribute to the error rate are not dropped because the channel is fully utilized. Instead the share of the single livestream client in the subnetwork becomes too small for a growing number of total clients. If its packets were prioritized and those of the HTTP and possibly the FTP client neglected in its favor, then we foresee a larger number of students that could simultaneously use the network, while meeting the required livestream error rate.
 
 \end{document}

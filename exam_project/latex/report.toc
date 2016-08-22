@@ -11,10 +11,12 @@
 \contentsline {subsection}{\numberline {2.2.1}Lecture Livestreaming Error Rate}{9}
 \contentsline {subsection}{\numberline {2.2.2}Web Browsing Behavior}{10}
 \contentsline {subsection}{\numberline {2.2.3}File Uploading Behavior}{11}
-\contentsline {chapter}{\numberline {3}Analysis}{12}
-\contentsline {section}{\numberline {3.1}Supported number of students}{12}
-\contentsline {section}{\numberline {3.2}Radio link traffic}{12}
-\contentsline {subsection}{\numberline {3.2.1}CCTV camera's influence on the generated traffic}{12}
-\contentsline {subsection}{\numberline {3.2.2}Lecture livestream's influence on the generated traffic}{13}
-\contentsline {subsection}{\numberline {3.2.3}FTP upload's influence on the generated traffic}{14}
-\contentsline {subsection}{\numberline {3.2.4}Radio link throughput}{14}
+\contentsline {subsection}{\numberline {2.2.4}Backup Channel Utilization}{12}
+\contentsline {chapter}{\numberline {3}Analysis}{14}
+\contentsline {section}{\numberline {3.1}Supported Number of Students}{14}
+\contentsline {section}{\numberline {3.2}Radio Link Traffic}{14}
+\contentsline {subsection}{\numberline {3.2.1}CCTV Camera's Influence on the Generated Traffic}{14}
+\contentsline {subsection}{\numberline {3.2.2}Lecture Livestream's Influence on the Generated Traffic}{15}
+\contentsline {subsection}{\numberline {3.2.3}FTP and HTTP Influence on the Generated Traffic}{16}
+\contentsline {section}{\numberline {3.3}Conclusion}{16}
+\contentsline {section}{\numberline {3.4}Improvements}{17}
