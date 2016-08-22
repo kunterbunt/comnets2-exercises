@@ -16,12 +16,18 @@
 \usepackage{float}
 \lstset{language=[LaTeX]TeX}
 
-\usepackage{wallpaper}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+  \fancyhf{}% Clear header/footer
+  \fancyhead[R]{\includegraphics[width=3cm]{TUHH.png}}
+}
+\pagestyle{plain}
+\usepackage{xcolor}
+\setlength\headheight{26pt}
 
 \renewcommand{\quote}[1]{``#1''}
 
 \begin{document}
-\URCornerWallPaper{0.25}{TUHH.png}
 \title{Report on Exam Task\\Simulation and Modelling of Communication Networks}
 \author{Nicolás Chopitea Kober, Sebastian Lindner}
 \date{Summer Term 2016}
