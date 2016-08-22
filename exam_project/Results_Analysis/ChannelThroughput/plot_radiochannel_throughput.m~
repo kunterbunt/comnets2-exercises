@@ -1,5 +1,5 @@
 function plot_radiochannel_throughput()
-    filenames = {'../3rd_analysis/radiochannel_avg_throughput_35-1.csv', '../3rd_analysis/radiochannel_avg_throughput_35nocctv-1.csv', '../3rd_analysis/radiochannel_avg_throughput_45-1.csv', '../3rd_analysis/radiochannel_avg_throughput_45nocctv-1.csv', '../3rd_analysis/radiochannel_avg_throughput_55-1.csv', '../3rd_analysis/radiochannel_avg_throughput_55nocctv-1.csv', '../3rd_analysis/radiochannel_avg_throughput_65-1.csv', '../3rd_analysis/radiochannel_avg_throughput_65nocctv-1.csv'};    
+    filenames = {'../3rd_analysis/radiochannel_avg_throughput_35-1.csv', '../3rd_analysis/radiochannel_avg_throughput_35nocctv-1.csv', '../3rd_analysis/radiochannel_avg_throughput_45-1.csv', '../3rd_analysis/radiochannel_avg_throughput_45nocctv-1.csv', 'radiochannel_avg_throughput_55-1.csv', 'radiochannel_avg_throughput_55nocctv-1.csv', 'radiochannel_avg_throughput_65-1.csv', 'radiochannel_avg_throughput_65nocctv-1.csv'};    
     numbersOfRuns = [20 20 20 20 20 20 20 20];
     meansVec = [];
     CIsVec = [];
@@ -20,6 +20,6 @@ function plot_radiochannel_throughput()
     xlabel('Number of students');
     set(gca,'XTickLabel',{'', '35 no CCTV', '35', '45 no CCTV', '45', '55 no CCTV', '55', '65 no CCTV', '65'})
     set(gca,'XTickLabelRotation', 90)
-    set(gca,'FontSize', 26);
+    set(gca,'FontSize',28);
     hold off
 end
