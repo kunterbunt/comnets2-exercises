@@ -191,7 +191,7 @@
 			
 			Figure \ref{fig:http} shows us the averaged total download traffic of any student in the eight different simulations. As expected the total decreases for more users.
 			
-			What is interesting to observe is that turning the CCTV camera on or off does not influence the total in a significant way. For $n=45$ the total actually increases for an online camera, which seems counterintuitive at first glance. We will investigate this further in secions \ref{sec:cctvinfluence} and chapter \ref{sec:analysis}.		
+			What is interesting to observe is that turning the CCTV camera on or off does not influence the total in a significant way. For $n=45$ the total actually increases for an online camera, which seems counterintuitive at first glance. We will investigate this further in chapter \ref{sec:analysis}.		
 			
 		\subsection{File Uploading Behavior}\label{sec:ftp}		
 			The volume of data that the FTP client uploads during the simulation looks like this:
@@ -201,7 +201,7 @@
 				\label{fig:ftp}
 			\end{figure}		
 			
-			As one could expect, if more users share the network then the FTP client will have less chances of sending out its data. Interestingly the client is able to push out marginally more data if the CCTV camera is online. A more in depth analysis of this can be found in section \ref{sec:ftpinfluence}.
+			As one could expect, if more users share the network then the FTP client will have less chances of sending out its data. Interestingly the client is able to push out marginally more data if the CCTV camera is online. A more in depth analysis of this can be found in section \ref{sec:cctvinfluence}.
 			
 		\subsection{Backup Channel Utilization}
 			\begin{figure}[H]
@@ -237,6 +237,8 @@
 			From this follows that the CCTV data stream takes up $\frac{1}{6}$ of the backup channel's bandwidth, leaving a majority of the bandwidth \[B_\text{\tiny CHN}^\text{free}=\frac{5}{6} B_\text{\tiny CHN}=\frac{1250\text{kB}}{\text{s}}\] free for the WLAN subsystem and so we can set the influence of the camera on the traffic as:
 			
 			\[d_\text{\tiny CCTV}=\frac{1}{6}\cdot B_\text{\tiny CHN}\]
+			
+			Interestingly, turning on the CCTV camera sometimes results in HTTP and FTP traffic totals increasing. Figure \ref{fig:channelthroughput} shows us that in general the backup channel bandwidth is sufficient to support all generated traffic. Consequently this constant increase in traffic caused by the CCTV camera is negligible when it comes to those clients' throughput. The difference between a use case with an online camera and one with an offline camera is very small and we can therefore say that the CCTV traffic has no significant influence on HTTP and FTP traffic.
 		
 			\subsection{Lecture Livestream's Influence on the Generated Traffic}
 			We have knowledge about the technical details of the livestream: 
@@ -279,9 +281,9 @@
 		 	
 		 	As figure \ref{fig:channelthroughput} demonstrates the channel bandwidth is large enough to support the generated traffic on average. Even for a large number of students $n\geq 55$ the channel is -~on~average~- not fully utilized. 
 		 	
-		 	The lecture livestream's error rate however still suffers from a number of students that large. The livestream has a notable error rate of larger than $5\%$ on average for $n\geq 50$ if the CCTV camera is online, and for $n\geq 55$ if it is offline. From this we can conclude that turning off the camera will lead to an addition $5$ students that can browse the web while fulfilling all requirements.
+		 	The lecture livestream's error rate however still suffers from a number of students that large. The livestream has a notable error rate of larger than $5\%$ on average for $n\geq 50$ if the CCTV camera is online, and for $n\geq 55$ if it is offline. From this we can conclude that turning off the camera will lead to an additional $5$ students that can browse the web while fulfilling all requirements.
 		 	
-		 	HTTP and FTP traffic behaves in an expected kind of way. HTTP download and FTP upload traffic decreases when more users share the network. FTP upload traffic suffers a bigger hit than the average HTTP client, which is explained by the WLAN protocol not prioritizing traffic and so the single FTP client's share of the time accredited to it becomes proportionally smaller compared to that of all the HTTP clients. Both HTTP and FTP performances remain in a reasonable window in all cases.
+		 	HTTP and FTP traffic behaves in an expected kind of way. HTTP download and FTP upload traffic decreases when more users share the network. FTP upload traffic suffers a bigger hit than the average HTTP client, which is explained by the WLAN protocol not prioritizing traffic and so the single FTP client's share of the time accredited to it becomes proportionally smaller compared to that of all the HTTP clients. Both HTTP and FTP performances remain in a reasonable window in all cases.		 			 	
 		 	
 		 	To sum it up, the backup channel seems sufficient. Its bandwidth is large enough to support the generated traffic. Its average utilization is below its maximum when the livestream error rate starts to shoot up, so the bottleneck is elsewhere.
 		 	

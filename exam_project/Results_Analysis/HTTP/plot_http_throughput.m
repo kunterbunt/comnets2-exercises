@@ -10,10 +10,8 @@ function plot_http_throughput()
         fileMean = fileMean./1000; % MB
         fileCI = fileCI./1000;
         CIsVec = [CIsVec; fileCI];
-        meansVec = [meansVec; fileMean];
-    end
-    
-    meansVec
+        meansVec = [meansVec; fileMean];                
+    end        
         
     figure    
     hold on

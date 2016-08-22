@@ -16,7 +16,7 @@
 \contentsline {section}{\numberline {3.1}Supported Number of Students}{14}
 \contentsline {section}{\numberline {3.2}Radio Link Traffic}{14}
 \contentsline {subsection}{\numberline {3.2.1}CCTV Camera's Influence on the Generated Traffic}{14}
-\contentsline {subsection}{\numberline {3.2.2}Lecture Livestream's Influence on the Generated Traffic}{15}
+\contentsline {subsection}{\numberline {3.2.2}Lecture Livestream's Influence on the Generated Traffic}{16}
 \contentsline {subsection}{\numberline {3.2.3}FTP and HTTP Influence on the Generated Traffic}{16}
 \contentsline {section}{\numberline {3.3}Conclusion}{16}
 \contentsline {section}{\numberline {3.4}Improvements}{17}
