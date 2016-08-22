@@ -23,3 +23,4 @@ plot(a, 'r')
 plot(b, 'g')
 plot(c, 'b')
 legend('1/sqrt(x)','1/(sqrt(5)','1/(sqrt(10)','1/(sqrt(20)','1/(sqrt(30)')
+set(gca,'FontSize', 34);
