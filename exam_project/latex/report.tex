@@ -230,7 +230,7 @@
 			\end{figure}
 			
 			Apparently CCTV and the WLAN subnetworks do not directly share a link. Their data meets at the backup radio link as both data streams travel out towards the main campus. We know the CCTV's data rate of  
-			\[d_\text{\tiny CCTV}=\frac{10\text{kB}}{40\text{ms}}=\frac{2\text{MBit}}{\text{s}}\]. 
+			\[d_\text{\tiny CCTV}=\frac{10\text{kB}}{40\text{ms}}=\frac{2\text{MBit}}{\text{s}}\]
 			
 			We also know that the backup channel supports a bandwidth of \[B_\text{\tiny CHN}=\frac{12\text{Mbit}}{\text{s}}\]
 			
@@ -288,6 +288,6 @@
 		 	To sum it up, the backup channel seems sufficient. Its bandwidth is large enough to support the generated traffic. Its average utilization is below its maximum when the livestream error rate starts to shoot up, so the bottleneck is elsewhere.
 		 	
 		 \section{Improvements}
-		 	As we have found out the channel bandwidth is sufficient and the optional CCTV camera contributes a foreseeable, constant amount of data. To improve the results the time share each client in the WLAN subnetwork is given could be adjusted to account for \emph{Quality of Service} for the livestream. There are several networking standards available that implement such a feature. \emph{IEEE 802.1q} is just one of many and its technical description goes beyond the scope of this report. As we have learned in the previous sections, dropped packets that contribute to the error rate are not dropped because the channel is fully utilized. Instead the share of the single livestream client in the subnetwork becomes too small for a growing number of total clients. If its packets were prioritized and those of the HTTP and possibly the FTP client neglected in its favor, then we foresee a larger number of students that could simultaneously use the network, while meeting the required livestream error rate.
+		 	As we have found out the channel bandwidth is sufficient and the optional CCTV camera contributes a foreseeable, constant amount of data. To improve the results the time share each client in the WLAN subnetwork is given could be adjusted to account for \emph{Quality of Service} for the livestream. There are several networking standards available that implement such a feature. \emph{IEEE 802.1q} is just one of many and its technical description goes beyond the scope of this report. As we have learned in the previous sections, dropped packets that contribute to the error rate are not dropped because the channel is always fully utilized. Instead the share of the single livestream client in the subnetwork becomes too small for a growing number of total clients. The time needed for a packet to travel from one end of the livestream connection to the other thus increases because more WLAN clients want to be served. If its packets were prioritized and those of the HTTP and possibly the FTP client neglected in its favor, then we foresee a larger number of students that could simultaneously use the network, while meeting the required livestream error rate.
 
 \end{document}
