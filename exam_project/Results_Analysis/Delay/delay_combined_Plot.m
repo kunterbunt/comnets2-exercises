@@ -57,7 +57,7 @@ ylabel('Delay [ms]');
 title('CCTV vs Non CCTV')
 set(gca,'XTickLabel',{'35 Students', '45 Students', '55 Students', '65 Students'})
 
-set(gca,'FontSize',28);
+set(gca,'FontSize', 32);
 legend('CCTV on', '', 'CCTV off', 'Location', 'northwest');
 %axis([0.5 4.5 0 15])
 

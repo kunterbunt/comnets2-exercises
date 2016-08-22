@@ -160,16 +160,7 @@
 		\subsection{Lecture Livestreaming Error Rate}\label{sec:errorrate}
 			The most time critical application is that of the bidirectional lecture video stream. We will investigate it in this section. 
 			
-			The livestream demands that the packet delay remains $<100\text{ms}$. Packets that arrive later than that are dropped and contribute to the error rate. This error rate must stay below $5\%$ in order to have a functioning livestream. 
-			
-			Figure \ref{fig:delay} shows the average delay of the connection.
-			\begin{figure}[H]
-				\center\includegraphics[width=0.8\textwidth]{../Results_Analysis/Delay/delay_combined_plot.png}
-				\caption{Lecture Livestream Average Delay}
-				\label{fig:delay}
-			\end{figure}					
-			
-			We observe no surprises here. The delay increases for more users sharing the network and a turned on camera marginally increases the delay.
+			The livestream demands that the packet delay remains $<100\text{ms}$. Packets that arrive later than that are dropped and contribute to the error rate. This error rate must stay below $5\%$ in order to have a functioning livestream. 			
 			
 			Figure \ref{fig:errorrate} shows the behavior of the error rate. 		
 			\begin{figure}[H]
@@ -178,7 +169,18 @@
 				\label{fig:errorrate}
 			\end{figure}
 			
-			As we can see, the cut-off point seems to lie at $n=50$ students. For an online CCTV camera the error rate lies just barely outside the allowed range. For an offline camera the livestream can still go with the occasional hiccup: the confidence interval tells us that some runs' mean error rates lied beyond the $5\%$ mark and some did not.							
+			As we can see, the cut-off point seems to lie at $n=50$ students. For an online CCTV camera the error rate lies just barely outside the allowed range. For an offline camera the livestream can still go with the occasional hiccup: the confidence interval tells us that some runs' mean error rates lied beyond the $5\%$ mark and some did not.		
+			
+			Building upon this result we decided to focus our simulations on $n\in\{35,45,55,65\}$ number of students as this set covers the critical part of the scenario, namely that range where the livestream error rate starts going beyond the $5\%$ mark.
+			
+			Figure \ref{fig:delay} shows the average delay of the connection.
+			\begin{figure}[H]
+				\center\includegraphics[width=0.8\textwidth]{../Results_Analysis/Delay/delay_combined_plot.png}
+				\caption{Lecture Livestream Average Delay}
+				\label{fig:delay}
+			\end{figure}					
+			
+			We observe no surprises here. The delay increases for more users sharing the network and a turned on camera marginally increases the delay.					
 		
 		\subsection{Web Browsing Behavior}\label{sec:http}
 			The scenario's variability stems from an unknown number of students that simultaneously browses the web. Building upon results from section \ref{fig:errorrate} we decided to focus on $n~\in~\{35, 45, 55, 65\}$ students so that the range around $n=50$ where the lecture livestream starts having performance problems is depicted.
