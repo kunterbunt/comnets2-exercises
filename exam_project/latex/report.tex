@@ -156,36 +156,47 @@
 		\subsection{Lecture Livestreaming Error Rate}\label{sec:errorrate}
 			The most time critical application is that of the bidirectional lecture video stream. We will investigate it in this section. 
 			
-			The livestream demands that the packet delay remains $<100\text{ms}$. Packets that arrive later than that are dropped and contribute to the error rate. This error rate must stay below $5\%$ in order to have a functioning livestream. Figure \ref{fig:errorrate} shows the behavior of this error rate. 
+			The livestream demands that the packet delay remains $<100\text{ms}$. Packets that arrive later than that are dropped and contribute to the error rate. This error rate must stay below $5\%$ in order to have a functioning livestream. 
 			
+			Figure \ref{fig:delay} shows the average delay of the connection.
+			\begin{figure}[H]
+				\center\includegraphics[width=0.8\textwidth]{../Results_Analysis/Delay/delay_combined_plot.png}
+				\caption{Lecture Livestream Average Delay}
+				\label{fig:delay}
+			\end{figure}					
+			
+			We observe no surprises here. The delay increases for more users sharing the network and a turned on camera marginally increases the delay.
+			
+			Figure \ref{fig:errorrate} shows the behavior of the error rate. 		
 			\begin{figure}[H]
 				\center\includegraphics[width=\textwidth]{../Results_Analysis/Combining_1st_3rd_analysis/plot_all.png}
 				\caption{Lecture Livestream Error Rate}
 				\label{fig:errorrate}
 			\end{figure}
 			
-			The blue bar represents a \emph{turned off} CCTV camera, a yellow one a \emph{turned on} camera. As we can see, the cut-off point seems to lie at $n=50$ students. For a turned-on CCTV camera the error rate lies just barely outside the allowed range. For a turned-off camera the livestream can still go with the occasional hiccup as the confidence interval tells us that some values lie outside the $5\%$ maximum.						
-			
-		\subsection{File Uploading Behavior}\label{sec:ftp}
+			As we can see, the cut-off point seems to lie at $n=50$ students. For an online CCTV camera the error rate lies just barely outside the allowed range. For an offline camera the livestream can still go with the occasional hiccup: the confidence interval tells us that some runs' mean error rates lied beyond the $5\%$ mark and some did not.							
 		
 		\subsection{Web Browsing Behavior}\label{sec:http}
 			The scenario's variability stems from an unknown number of students that simultaneously browses the web. Building upon results from section \ref{fig:errorrate} we decided to focus on $n~\in~\{35, 45, 55, 65\}$ students so that the range around $n=50$ where the lecture livestream starts having performance problems is depicted.
 			
 			\begin{figure}[H]
-				\center\includegraphics[width=\textwidth]{../Results_Analysis/3rd_analysis/http.png}
-				\caption{Total download traffic of an average student}
+				\center\includegraphics[width=\textwidth]{../Results_Analysis/HTTP/http.png}
+				\caption{Total download traffic of an average student over $500\text{s}$}
 				\label{fig:http}
 			\end{figure}
 			
 			Figure \ref{fig:http} shows us the averaged total download traffic of any student in the eight different simulations including confidence intervals with a confidence level of $1-\alpha = 0.95$. As expected the total decreases for more users.
 			
-			What is interesting to observe is that turning the CCTV camera on or off does not influence the total in a significant way. For $n=45$ the total actually increases for an online camera, which seems counterintuitive at first glance. We will investigate this further in secions \ref{sec:cctvinfluence} and chapter \ref{sec:analysis}.					
+			What is interesting to observe is that turning the CCTV camera on or off does not influence the total in a significant way. For $n=45$ the total actually increases for an online camera, which seems counterintuitive at first glance. We will investigate this further in secions \ref{sec:cctvinfluence} and chapter \ref{sec:analysis}.		
+			
+		\subsection{File Uploading Behavior}\label{sec:ftp}		
+			
 		
 	\chapter{Analysis}\label{sec:analysis}
 		We have made many interesting observations in section \ref{chp:observations}. In this chapter we will try to analyze these observations, interpret them, evaluate the usefulness of the backup radio channel and give ideas on how to improve the scenario.				
 		
-		\section{Supported number of students $n$}
-		As section \ref{sec:errorrate} showed us, more than $n=50$ students can certainly not be supported, even if the camera is turned off, if we want to maintain a lecture livestream's error rate of $<5\%$. If the stream becomes noticeably erroneous, then we advise the administrator to turn off the CCTV camera. If the number of students goes far beyond $n\geq 45$, turning off the camera results in the system being able to support an additional, small number of students. Staying below this threshold, running the CCTV camera should not be a problem. Approaching $n=50$ students, given a turned off CCTV camera, the livestream will start going beyond the critical $5\%$ error rate and start having a notable packet loss.	
+		\section{Supported number of students}
+		As section \ref{sec:errorrate} showed us, more than $n=50$ students can certainly not be supported, even if the camera is turned off, if we want to maintain a lecture livestream's error rate of $<5\%$. If the stream becomes noticeably erroneous, then we advise the administrator to turn off the CCTV camera. If the number of students goes far beyond $n\geq 45$, turning off the camera results in the system being able to support an additional, small number of students. Staying below this threshold, running the CCTV camera should not be a problem. Approaching $n=55$ students, given a turned off CCTV camera, the livestream will start going beyond the critical $5\%$ error rate and start having a notable packet loss.	
 		
 		\section{Radio link traffic}
 		Many inputs to the backup radio link are known to us. Only the number of students is variable here. This section aims at breaking down what contributes to the backup radio link's traffic.
@@ -198,7 +209,7 @@
 				\caption{Network model excerpt - CCTV and WLAN}
 			\end{figure}
 			
-			Apparently CCTV and the WLAN subnetworks do not directly share a link. Their data meets at the backup radio link. We know the CCTV's data rate of  
+			Apparently CCTV and the WLAN subnetworks do not directly share a link. Their data meets at the backup radio link as both data streams travel out towards the main campus. We know the CCTV's data rate of  
 			\[d_\text{\tiny CCTV}=\frac{10\text{kB}}{40\text{ms}}=\frac{2\text{MBit}}{\text{s}}\]. 
 			
 			We also know that the backup channel supports a bandwidth of \[B_\text{\tiny CHN}=\frac{12\text{Mbit}}{\text{s}}\]
@@ -218,15 +229,7 @@
 			\subsection{FTP upload's influence on the generated traffic}
 			The constant FTP upload that takes place is more difficult to capture. FTP is an application layer protocol that operates on TCP. As such it has no knowledge of the network's current state. It passes on as much data as it wants to send, leaving the job of breaking down this data into chunks that \emph{can} actually be sent to the TCP protocol. 
 			
-			One can assume that the FTP traffic will swallow up the available traffic up to its maximum:
 			
-			\[d_\text{\tiny FTP}^\text{\tiny max}=\frac{\text{MTU}}{20\text{ms}}=\frac{1500\text{B}}{20\text{ms}}=\frac{0.6\text{MBit}}{\text{s}}\]
-			
-			\emph{MTU} refers to the \emph{maximum transmission unit} that is determined by the Ethernet protocol. We are modeling the data stream as transmissions every $20\text{ms}$.
-			
-			It follows that FTP takes up this much of the channel's bandwidth:
-			
-			\[d_\text{\tiny FTP}\leq 0.05\cdot B_\text{\tiny CHN}\]
 			
 			\subsection{Radio link throughput}
 			Putting the pieces together we obtain the backup channel's average throughput:
